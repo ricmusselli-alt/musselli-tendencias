@@ -355,3 +355,7 @@ header.site nav .navlink--cross{ color:var(--dorado); }
 .trend__source-btn:hover{ background:#e7c46b; gap:14px; }
 .trend__source-note{ font-family:var(--sans); font-size:12px; color:var(--texto-mute); }
 .trend__source-note a{ color:var(--dorado); border-bottom:1px solid rgba(204,163,83,.4); }
+
+/* bloque de cierre con un solo botón: que no se estire a todo el ancho */
+.closer__btns--one{ justify-content:center; }
+.closer__btns--one .closer__btn{ flex:0 1 auto; padding-left:40px; padding-right:40px; }
