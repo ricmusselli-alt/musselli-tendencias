@@ -134,14 +134,21 @@ const ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsI
 function catLabel(cat){ return cat === "guitar-tech" ? "Guitar Tech" : "Luthier"; }
 function fmtDate(iso){ if(!iso) return ""; return new Date(iso).toLocaleDateString("es-AR",{day:"numeric",month:"long",year:"numeric"}); }
 function esc(s){ return String(s ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c])); }
+function proxyImg(url){ try{ return "https://images.weserv.nl/?url=" + encodeURIComponent(String(url).replace(/^https?:\/\//i,"")) + "&w=700&q=76&output=webp&we"; }catch(e){ return url; } }
 
 function cardMarkup(p){
+  const thumb = p.hero_image
+    ? `<div class="tcard__thumb"><img src="${esc(proxyImg(p.hero_image))}" alt="" loading="lazy" onerror="var t=this.closest('.tcard__thumb'); if(t)t.remove();"></div>`
+    : "";
   return `<a class="tcard" href="./${esc(p.slug)}/">
-    <div class="tcard__cat">${esc(catLabel(p.category))}</div>
-    <h3>${esc(p.title)}</h3>
-    ${p.price_usd ? `<div class="tcard__price">USD $${esc(String(p.price_usd))}</div>` : ""}
-    ${p.excerpt ? `<p class="tcard__exc">${esc(p.excerpt)}</p>` : ""}
-    <div class="tcard__date">${esc(fmtDate(p.published_at))}</div>
+    ${thumb}
+    <div class="tcard__body">
+      <div class="tcard__cat">${esc(catLabel(p.category))}</div>
+      <h3>${esc(p.title)}</h3>
+      ${p.price_usd ? `<div class="tcard__price">USD $${esc(String(p.price_usd))}</div>` : ""}
+      ${p.excerpt ? `<p class="tcard__exc">${esc(p.excerpt)}</p>` : ""}
+      <div class="tcard__date">${esc(fmtDate(p.published_at))}</div>
+    </div>
   </a>`;
 }
 
