@@ -145,7 +145,6 @@ function cardMarkup(p){
     <div class="tcard__body">
       <div class="tcard__cat">${esc(catLabel(p.category))}</div>
       <h3>${esc(p.title)}</h3>
-      ${p.price_usd ? `<div class="tcard__price">USD $${esc(String(p.price_usd))}</div>` : ""}
       ${p.excerpt ? `<p class="tcard__exc">${esc(p.excerpt)}</p>` : ""}
       <div class="tcard__date">${esc(fmtDate(p.published_at))}</div>
     </div>
