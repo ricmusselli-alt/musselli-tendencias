@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://tendencias.ricardomusselli.com/sitemap.xml
